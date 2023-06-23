@@ -26,6 +26,8 @@ export default function Index() {
 
             <RunningTotal scores={scores}/>
             <HitCounter scores={scores}/>
+            <GoldCounter scores={scores}/>
+
         </>
     );
 }
@@ -75,6 +77,21 @@ function HitCounter({scores}) {
         <>
             <h1>Hits</h1>
             <p>{hitsCount}</p>
+        </>
+    )
+}
+
+function GoldCounter({scores}) {
+    const goldCount = scores.reduce((total, score) => {
+        if (score === 9) {
+            return total + 1
+        }
+        return total
+    }, 0)
+    return (
+        <>
+            <h1>Golds</h1>
+            <p>{goldCount}</p>
         </>
     )
 }
