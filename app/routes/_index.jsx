@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {endsPerRound, scoresPerEnd, validScores} from "../domain/scores";
+import {endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
 
 export const meta = () => {
     return [
@@ -94,7 +94,7 @@ function ScoreSheet({scores}) {
 
 function End({endScores}) {
     const endTotal = endScores.reduce((totalScore, score) => {
-        if (score === 'M') {
+        if (score === MISS) {
             return totalScore
         }
 
@@ -115,14 +115,14 @@ function RoundSubTotals({ends}) {
     const scores = ends.flat()
 
     const hitsCount = scores.reduce((total, score) => {
-        if (score !== 'M') {
+        if (score !== MISS) {
             return total + 1
         }
         return total
     }, 0)
 
     const roundScore = scores.reduce((total, score) => {
-        if (score === 'M') {
+        if (score === MISS) {
             return total
         }
 
@@ -147,7 +147,7 @@ function RoundSubTotals({ends}) {
 
 function RunningTotal({scores}) {
     const runningTotal = scores.reduce((total, score) => {
-        if (score === 'M') {
+        if (score === MISS) {
             return total
         }
 
@@ -163,7 +163,7 @@ function RunningTotal({scores}) {
 
 function HitCounter({scores}) {
     const hitsCount = scores.reduce((total, score) => {
-        if (score !== 'M') {
+        if (score !== MISS) {
             return total + 1
         }
         return total
@@ -190,14 +190,3 @@ function GoldCounter({scores}) {
         </>
     )
 }
-
-function Counter() {
-    const [count, setCount] = useState(0)
-    return (
-        <>
-            <p>count = {count}</p>
-            <button onClick={event => setCount(count + 1)}>Click me!</button>
-        </>
-    );
-}
-
