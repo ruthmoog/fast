@@ -15,8 +15,8 @@ export default function Index() {
         <>
             <h1>Fast!</h1>
 
-            {validScores.map((e) => (
-                <ScoreButton setScores={setScores} value={e}/>
+            {validScores.map((e, index) => (
+                <ScoreButton key={index} setScores={setScores} value={e}/>
             ))}
 
             <ScoreSheet scores={scores}/>
@@ -31,7 +31,7 @@ export default function Index() {
 
 function ScoreButton({setScores, value}) {
     return (
-        <button onClick={event => setScores(currentScores => [...currentScores, value])}>{value}</button>
+        <button onClick={() => setScores(currentScores => [...currentScores, value])}>{value}</button>
     )
 }
 
@@ -78,8 +78,8 @@ function ScoreSheet({scores}) {
                 </tr>
                 </thead>
                 <tbody>
-                {rounds.map((e) => (
-                    <tr>
+                {rounds.map((e, index) => (
+                    <tr key={index}>
                         <End endScores={e[0] ?? []}/>
                         <End endScores={e[1] ?? []}/>
                         <RoundSubTotals ends={e}/>
@@ -102,8 +102,8 @@ function End({endScores}) {
     }, 0)
     return (
         <>
-            {Array.from({length: scoresPerEnd}, (_, i) => i + 1).map((e) => (
-                <td>{endScores[e - 1] ?? ''}</td>
+            {Array.from({length: scoresPerEnd}, (_, i) => i + 1).map((e, index) => (
+                <td key={index}>{endScores[e - 1] ?? ''}</td>
             ))}
             <td>{endTotal}</td>
         </>
