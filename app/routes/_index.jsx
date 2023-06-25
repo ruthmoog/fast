@@ -71,21 +71,21 @@ function ScoreSheet({scores}) {
     return (
         <>
             <h1>Your Scores</h1>
-            <table style={{border: "1px solid black"}}>
+            <table >
                 <thead>
-                <tr style={{border: "1px solid black"}}>
-                    <th style={{border: "1px solid black"}} colSpan={6}>🎯 scores</th>
-                    <th style={{border: "1px solid black"}}>E/T</th>
-                    <th style={{border: "1px solid black"}} colSpan={6}>🎯 scores</th>
-                    <th style={{border: "1px solid black"}}>E/T</th>
-                    <th style={{border: "1px solid black"}}>H</th>
-                    <th style={{border: "1px solid black"}}>S</th>
-                    <th style={{border: "1px solid black"}}>G</th>
+                <tr >
+                    <th  colSpan={6}>🎯 scores</th>
+                    <th >E/T</th>
+                    <th  colSpan={6}>🎯 scores</th>
+                    <th >E/T</th>
+                    <th >H</th>
+                    <th >S</th>
+                    <th >G</th>
                 </tr>
                 </thead>
                 <tbody>
                 {rounds.map((e) => (
-                    <tr style={{border: "1px solid black"}}>
+                    <tr >
                         <End endScores={e[0] ?? []} />
                         <End endScores={e[1] ?? []} />
                         <RoundSubTotals ends={e}/>
@@ -108,14 +108,14 @@ function End({endScores}) {
     }, 0)
     return (
         <>
-            <td style={{border: "1px solid black"}}>{endScores[0] ?? ''}</td>
-            <td style={{border: "1px solid black"}}>{endScores[1] ?? ''}</td>
-            <td style={{border: "1px solid black"}}>{endScores[2] ?? ''}</td>
-            <td style={{border: "1px solid black"}}>{endScores[3] ?? ''}</td>
-            <td style={{border: "1px solid black"}}>{endScores[4] ?? ''}</td>
-            <td style={{border: "1px solid black"}}>{endScores[5] ?? ''}</td>
+            <td >{endScores[0] ?? ''}</td>
+            <td >{endScores[1] ?? ''}</td>
+            <td >{endScores[2] ?? ''}</td>
+            <td >{endScores[3] ?? ''}</td>
+            <td >{endScores[4] ?? ''}</td>
+            <td >{endScores[5] ?? ''}</td>
 
-            <td style={{border: "1px solid black"}}>{endTotal}</td>
+            <td >{endTotal}</td>
         </>
     );
 }
