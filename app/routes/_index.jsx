@@ -1,29 +1,25 @@
 import {useState} from "react";
+import {endsPerRound, scoresPerEnd, validScores} from "../domain/scores";
 
 export const meta = () => {
     return [
-        {title: "New Remix App"},
-        {name: "description", content: "Welcome to Remix!"},
+        {title: "Fast!"},
+        {name: "description", content: "Fast!"},
     ];
 };
 
 export default function Index() {
     const [scores, setScores] = useState([])
 
-
     return (
         <>
             <h1>Fast!</h1>
 
-            <ScoreButton setScores={setScores} value={9}/>
-            <ScoreButton setScores={setScores} value={7}/>
-            <ScoreButton setScores={setScores} value={5}/>
-            <ScoreButton setScores={setScores} value={3}/>
-            <ScoreButton setScores={setScores} value={1}/>
-            <ScoreButton setScores={setScores} value={'M'}/>
+            {validScores.map((e) => (
+                <ScoreButton setScores={setScores} value={e}/>
+            ))}
 
             <ScoreSheet scores={scores}/>
-
             <RunningTotal scores={scores}/>
             <HitCounter scores={scores}/>
             <GoldCounter scores={scores}/>
@@ -32,6 +28,7 @@ export default function Index() {
     );
 }
 
+
 function ScoreButton({setScores, value}) {
     return (
         <button onClick={event => setScores(currentScores => [...currentScores, value])}>{value}</button>
@@ -39,8 +36,6 @@ function ScoreButton({setScores, value}) {
 }
 
 function ScoreSheet({scores}) {
-
-    const scoresPerEnd = 6 // items per chunk
 
     const ends = scores.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / scoresPerEnd)
@@ -54,7 +49,6 @@ function ScoreSheet({scores}) {
         return resultArray
     }, [])
 
-    const endsPerRound = 2 // items per chunk
 
     const rounds = ends.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / endsPerRound)
@@ -71,23 +65,23 @@ function ScoreSheet({scores}) {
     return (
         <>
             <h1>Your Scores</h1>
-            <table >
+            <table>
                 <thead>
-                <tr >
-                    <th  colSpan={6}>🎯 scores</th>
-                    <th >E/T</th>
-                    <th  colSpan={6}>🎯 scores</th>
-                    <th >E/T</th>
-                    <th >H</th>
-                    <th >S</th>
-                    <th >G</th>
+                <tr>
+                    <th colSpan={6}>🎯 scores</th>
+                    <th>E/T</th>
+                    <th colSpan={6}>🎯 scores</th>
+                    <th>E/T</th>
+                    <th>H</th>
+                    <th>S</th>
+                    <th>G</th>
                 </tr>
                 </thead>
                 <tbody>
                 {rounds.map((e) => (
-                    <tr >
-                        <End endScores={e[0] ?? []} />
-                        <End endScores={e[1] ?? []} />
+                    <tr>
+                        <End endScores={e[0] ?? []}/>
+                        <End endScores={e[1] ?? []}/>
                         <RoundSubTotals ends={e}/>
                     </tr>
                 ))}
@@ -108,14 +102,10 @@ function End({endScores}) {
     }, 0)
     return (
         <>
-            <td >{endScores[0] ?? ''}</td>
-            <td >{endScores[1] ?? ''}</td>
-            <td >{endScores[2] ?? ''}</td>
-            <td >{endScores[3] ?? ''}</td>
-            <td >{endScores[4] ?? ''}</td>
-            <td >{endScores[5] ?? ''}</td>
-
-            <td >{endTotal}</td>
+            {Array.from({length: scoresPerEnd}, (_, i) => i + 1).map((e) => (
+                <td>{endScores[e - 1] ?? ''}</td>
+            ))}
+            <td>{endTotal}</td>
         </>
     );
 }
