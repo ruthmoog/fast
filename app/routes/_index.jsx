@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {calculateTotal, endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
+import {calculateHitsCount, calculateTotal, endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
 
 export const meta = () => {
     return [
@@ -144,12 +144,7 @@ function RunningTotal({scores}) {
 }
 
 function HitCounter({scores}) {
-    const hitsCount = scores.reduce((total, score) => {
-        if (score !== MISS) {
-            return total + 1
-        }
-        return total
-    }, 0)
+    const hitsCount = calculateHitsCount(scores)
     return (
         <>
             <h1>Hits</h1>

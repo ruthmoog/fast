@@ -12,3 +12,12 @@ export function calculateTotal(scores) {
         return totalScore + score
     }, 0)
 }
+
+export function calculateHitsCount(scores) {
+    return scores.reduce((total, score) => {
+        if (score !== MISS) {
+            return total + 1
+        }
+        return total
+    }, 0);
+}
