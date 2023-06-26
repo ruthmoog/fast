@@ -100,61 +100,51 @@ function ScoreSheet({scores}) {
 }
 
 function End({endScores}) {
-    const endTotal = calculateTotal(endScores)
     return (
         <>
             {Array.from({length: scoresPerEnd}, (_, i) => i + 1).map((e, index) => (
                 <td key={index}>{endScores[e - 1] ?? ''}</td>
             ))}
-            <td>{endTotal}</td>
+            <td>{calculateTotal(endScores)}</td>
         </>
     );
 }
 
 function RoundSubTotals({ends}) {
-    console.log("Ends: ", ends)
     const scores = ends.flat()
-
-    const hitsCount = calculateHitsCount(scores)
-    const roundScore = calculateTotal(scores)
-
-    const goldCount = calculateGoldCount(scores)
 
     return (
         <>
-            <td>{hitsCount}</td>
-            <td>{roundScore}</td>
-            <td>{goldCount}</td>
+            <td>{calculateHitsCount(scores)}</td>
+            <td>{calculateTotal(scores)}</td>
+            <td>{calculateGoldCount(scores)}</td>
         </>
     )
 }
 
 function RunningTotal({scores}) {
-    const runningTotal = calculateTotal(scores)
     return (
         <>
             <h1>Running Total</h1>
-            <p>{runningTotal}</p>
+            <p>{calculateTotal(scores)}</p>
         </>
     )
 }
 
 function HitCounter({scores}) {
-    const hitsCount = calculateHitsCount(scores)
     return (
         <>
             <h1>Hits</h1>
-            <p>{hitsCount}</p>
+            <p>{calculateHitsCount(scores)}</p>
         </>
     )
 }
 
 function GoldCounter({scores}) {
-    const goldCount = calculateGoldCount(scores)
     return (
         <>
             <h1>Golds</h1>
-            <p>{goldCount}</p>
+            <p>{calculateGoldCount(scores)}</p>
         </>
     )
 }
