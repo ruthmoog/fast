@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
+import {calculateTotal, endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
 
 export const meta = () => {
     return [
@@ -93,13 +93,7 @@ function ScoreSheet({scores}) {
 }
 
 function End({endScores}) {
-    const endTotal = endScores.reduce((totalScore, score) => {
-        if (score === MISS) {
-            return totalScore
-        }
-
-        return totalScore + score
-    }, 0)
+    const endTotal = calculateTotal(endScores)
     return (
         <>
             {Array.from({length: scoresPerEnd}, (_, i) => i + 1).map((e, index) => (
