@@ -108,13 +108,7 @@ function RoundSubTotals({ends}) {
     console.log("Ends: ", ends)
     const scores = ends.flat()
 
-    const hitsCount = scores.reduce((total, score) => {
-        if (score !== MISS) {
-            return total + 1
-        }
-        return total
-    }, 0)
-
+    const hitsCount = calculateHitsCount(scores)
     const roundScore = calculateTotal(scores)
 
     const goldCount = scores.reduce((total, score) => {
