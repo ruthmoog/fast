@@ -46,8 +46,6 @@ function ScoreButton({setScores, value}) {
 function ScoreSheet({scores}) {
 
     const ends = calculateEnds(scores)
-
-
     const rounds = calculateRounds(ends)
 
     return (
@@ -66,11 +64,11 @@ function ScoreSheet({scores}) {
                 </tr>
                 </thead>
                 <tbody>
-                {rounds.map((e, index) => (
+                {rounds.map((round, index) => (
                     <tr key={index}>
-                        <End endScores={e[0] ?? []}/>
-                        <End endScores={e[1] ?? []}/>
-                        <RoundSubTotals ends={e}/>
+                        <End endScores={round.firstEnd}/>
+                        <End endScores={round.secondEnd}/>
+                        <RoundSubTotals subtotals={round.subTotals}/>
                     </tr>
                 ))}
 
@@ -91,14 +89,12 @@ function End({endScores}) {
     );
 }
 
-function RoundSubTotals({ends}) {
-    const scores = ends.flat()
-
+function RoundSubTotals({subtotals}) {
     return (
         <>
-            <td>{calculateHitsCount(scores)}</td>
-            <td>{calculateTotal(scores)}</td>
-            <td>{calculateGoldCount(scores)}</td>
+            <td>{subtotals.hits}</td>
+            <td>{subtotals.score}</td>
+            <td>{subtotals.golds}</td>
         </>
     )
 }

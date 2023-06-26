@@ -46,7 +46,7 @@ export function calculateEnds(scores) {
 }
 
 export function calculateRounds(ends) {
-    return ends.reduce((resultArray, item, index) => {
+    let makeRounds = ends.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / endsPerRound)
 
         if (!resultArray[chunkIndex]) {
@@ -57,4 +57,18 @@ export function calculateRounds(ends) {
 
         return resultArray
     }, []);
+
+    // makeRounds is an array of "rounds" (which are just arrays)
+    // therefore we need to return an array of objects instead
+
+    return makeRounds.map((e) => {
+        // figure out subtotals
+        const flatted = e.flat()
+        const subTotals = {
+            hits: calculateHitsCount(flatted),
+            golds: calculateGoldCount(flatted),
+            score: calculateTotal(flatted)
+        }
+        return {firstEnd: e[0] ?? [], secondEnd: e[1] ?? [], subTotals}
+    })
 }
