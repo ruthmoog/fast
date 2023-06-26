@@ -21,3 +21,12 @@ export function calculateHitsCount(scores) {
         return total
     }, 0);
 }
+
+export function calculateGoldCount(scores) {
+    return scores.reduce((total, score) => {
+        if (score === 9) {
+            return total + 1
+        }
+        return total
+    }, 0);
+}

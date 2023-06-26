@@ -1,5 +1,12 @@
 import {useState} from "react";
-import {calculateHitsCount, calculateTotal, endsPerRound, MISS, scoresPerEnd, validScores} from "../domain/scores";
+import {
+    calculateGoldCount,
+    calculateHitsCount,
+    calculateTotal,
+    endsPerRound,
+    scoresPerEnd,
+    validScores
+} from "../domain/scores";
 
 export const meta = () => {
     return [
@@ -111,12 +118,7 @@ function RoundSubTotals({ends}) {
     const hitsCount = calculateHitsCount(scores)
     const roundScore = calculateTotal(scores)
 
-    const goldCount = scores.reduce((total, score) => {
-        if (score === 9) {
-            return total + 1
-        }
-        return total
-    }, 0)
+    const goldCount = calculateGoldCount(scores)
 
     return (
         <>
