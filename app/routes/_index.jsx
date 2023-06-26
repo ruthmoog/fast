@@ -150,12 +150,7 @@ function HitCounter({scores}) {
 }
 
 function GoldCounter({scores}) {
-    const goldCount = scores.reduce((total, score) => {
-        if (score === 9) {
-            return total + 1
-        }
-        return total
-    }, 0)
+    const goldCount = calculateGoldCount(scores)
     return (
         <>
             <h1>Golds</h1>
