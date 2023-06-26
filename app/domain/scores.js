@@ -15,10 +15,10 @@ export function calculateTotal(scores) {
 
 export function calculateHitsCount(scores) {
     return scores.reduce((total, score) => {
-        if (score !== MISS) {
-            return total + 1
+        if (score === MISS) {
+            return total
         }
-        return total
+        return total + 1
     }, 0);
 }
 
