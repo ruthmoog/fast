@@ -115,13 +115,7 @@ function RoundSubTotals({ends}) {
         return total
     }, 0)
 
-    const roundScore = scores.reduce((total, score) => {
-        if (score === MISS) {
-            return total
-        }
-
-        return total + score
-    }, 0)
+    const roundScore = calculateTotal(scores)
 
     const goldCount = scores.reduce((total, score) => {
         if (score === 9) {
@@ -140,13 +134,7 @@ function RoundSubTotals({ends}) {
 }
 
 function RunningTotal({scores}) {
-    const runningTotal = scores.reduce((total, score) => {
-        if (score === MISS) {
-            return total
-        }
-
-        return total + score
-    }, 0)
+    const runningTotal = calculateTotal(scores)
     return (
         <>
             <h1>Running Total</h1>
