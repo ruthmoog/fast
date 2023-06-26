@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {
-    calculateEnds,
     calculateGoldCount,
     calculateHitsCount,
     calculateRounds,
@@ -44,10 +43,6 @@ function ScoreButton({setScores, value}) {
 }
 
 function ScoreSheet({scores}) {
-
-    const ends = calculateEnds(scores)
-    const rounds = calculateRounds(ends)
-
     return (
         <>
             <h1>Your Scores</h1>
@@ -64,7 +59,7 @@ function ScoreSheet({scores}) {
                 </tr>
                 </thead>
                 <tbody>
-                {rounds.map((round, index) => (
+                {calculateRounds(scores).map((round, index) => (
                     <tr key={index}>
                         <End endScores={round.firstEnd}/>
                         <End endScores={round.secondEnd}/>

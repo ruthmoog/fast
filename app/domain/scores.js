@@ -31,7 +31,7 @@ export function calculateGoldCount(scores) {
     }, 0);
 }
 
-export function calculateEnds(scores) {
+function calculateEnds(scores) {
     return scores.reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / scoresPerEnd)
 
@@ -45,8 +45,8 @@ export function calculateEnds(scores) {
     }, []);
 }
 
-export function calculateRounds(ends) {
-    let makeRounds = ends.reduce((resultArray, item, index) => {
+export function calculateRounds(scores) {
+    let makeRounds = calculateEnds(scores).reduce((resultArray, item, index) => {
         const chunkIndex = Math.floor(index / endsPerRound)
 
         if (!resultArray[chunkIndex]) {
