@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {
+    calculateEnds,
     calculateGoldCount,
     calculateHitsCount,
+    calculateRounds,
     calculateTotal,
-    endsPerRound,
     scoresPerEnd,
     validScores
 } from "../domain/scores";
@@ -44,30 +45,10 @@ function ScoreButton({setScores, value}) {
 
 function ScoreSheet({scores}) {
 
-    const ends = scores.reduce((resultArray, item, index) => {
-        const chunkIndex = Math.floor(index / scoresPerEnd)
-
-        if (!resultArray[chunkIndex]) {
-            resultArray[chunkIndex] = [] // start a new chunk
-        }
-
-        resultArray[chunkIndex].push(item)
-
-        return resultArray
-    }, [])
+    const ends = calculateEnds(scores)
 
 
-    const rounds = ends.reduce((resultArray, item, index) => {
-        const chunkIndex = Math.floor(index / endsPerRound)
-
-        if (!resultArray[chunkIndex]) {
-            resultArray[chunkIndex] = [] // start a new chunk
-        }
-
-        resultArray[chunkIndex].push(item)
-
-        return resultArray
-    }, [])
+    const rounds = calculateRounds(ends)
 
     return (
         <>

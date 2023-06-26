@@ -30,3 +30,31 @@ export function calculateGoldCount(scores) {
         return total
     }, 0);
 }
+
+export function calculateEnds(scores) {
+    return scores.reduce((resultArray, item, index) => {
+        const chunkIndex = Math.floor(index / scoresPerEnd)
+
+        if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = [] // start a new chunk
+        }
+
+        resultArray[chunkIndex].push(item)
+
+        return resultArray
+    }, []);
+}
+
+export function calculateRounds(ends) {
+    return ends.reduce((resultArray, item, index) => {
+        const chunkIndex = Math.floor(index / endsPerRound)
+
+        if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = [] // start a new chunk
+        }
+
+        resultArray[chunkIndex].push(item)
+
+        return resultArray
+    }, []);
+}
