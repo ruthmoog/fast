@@ -56,6 +56,7 @@ function ScoreSheet({scores}) {
                     <th>H</th>
                     <th>S</th>
                     <th>G</th>
+                    <th>R/T</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -90,6 +91,7 @@ function RoundSubTotals({subtotals}) {
             <td>{subtotals.hits}</td>
             <td>{subtotals.score}</td>
             <td>{subtotals.golds}</td>
+            <td>{subtotals.runningTotal}</td>
         </>
     )
 }

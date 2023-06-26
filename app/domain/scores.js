@@ -61,14 +61,22 @@ export function calculateRounds(scores) {
     // makeRounds is an array of "rounds" (which are just arrays)
     // therefore we need to return an array of objects instead
 
+    console.log(makeRounds)
+
+    let rt = 0
+
     return makeRounds.map((e) => {
         // figure out subtotals
         const flatted = e.flat()
+        let roundScore = calculateTotal(flatted);
         const subTotals = {
             hits: calculateHitsCount(flatted),
             golds: calculateGoldCount(flatted),
-            score: calculateTotal(flatted)
+            score: roundScore,
+            runningTotal: rt + roundScore
         }
+        rt = subTotals.runningTotal
+
         return {firstEnd: e[0] ?? [], secondEnd: e[1] ?? [], subTotals}
     })
 }
