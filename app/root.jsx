@@ -1,5 +1,4 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
-
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -12,20 +11,23 @@ import {
 import stylesUrl from "./styles/global.css";
 
 export const links = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-    { rel: "stylesheet", href: stylesUrl },
+  { rel: "stylesheet", href: stylesUrl },
 ];
+
+export const loader = async ({ request }) => {
+  return json({  });
+};
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
