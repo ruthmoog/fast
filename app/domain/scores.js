@@ -4,13 +4,11 @@ export const scoresPerEnd = 6;
 export const endsPerRound = 2;
 
 export function calculateTotal(scores) {
-    const hits = scores.filter((score) => score !== MISS)
-    return hits.reduce((totalScore, score) => totalScore + score)
+    return getHits(scores).reduce((totalScore, score) => totalScore + score)
 }
 
 export function calculateHitsCount(scores) {
-    const hits = scores.filter((score) => score !== MISS)
-    return hits.length
+    return getHits(scores).length
 }
 
 export function calculateGoldCount(scores) {
@@ -20,6 +18,10 @@ export function calculateGoldCount(scores) {
         }
         return total;
     }, 0);
+}
+
+function getHits(scores) {
+    return scores.filter((score) => score !== MISS);
 }
 
 function calculateEnds(scores) {
