@@ -20,16 +20,18 @@ export default function Index() {
 
   return (
     <>
-      <h1>Fast!</h1>
+      <h1>FAST!</h1>
 
+        <section id="buttonsContainer">
       {validScores.map((score, index) => (
         <ScoreButton key={index} setScores={setScores} value={score}/>
       ))}
+        </section>
 
       <ScoreSheet scores={scores}/>
-      <RunningTotal scores={scores}/>
-      <HitCounter scores={scores}/>
-      <GoldCounter scores={scores}/>
+      {/*<RunningTotal scores={scores}/>*/}
+      {/*<HitCounter scores={scores}/>*/}
+      {/*<GoldCounter scores={scores}/>*/}
 
     </>
   );
@@ -38,7 +40,7 @@ export default function Index() {
 
 function ScoreButton({setScores, value}) {
   return (
-    <button onClick={() => setScores(currentScores => [...currentScores, value])}>{value}</button>
+    <button id={"score"+value} onClick={() => setScores(currentScores => [...currentScores, value])}>{value}</button>
   )
 }
 
@@ -49,9 +51,9 @@ function ScoreSheet({scores}) {
       <table>
         <thead>
         <tr>
-          <th colSpan={6}>🎯 scores</th>
+          <th class="spanningColumn" colSpan={6}>🎯 scores</th>
           <th>E/T</th>
-          <th colSpan={6}>🎯 scores</th>
+          <th class="spanningColumn" colSpan={6}>🎯 scores</th>
           <th>E/T</th>
           <th>H</th>
           <th>S</th>

@@ -1,8 +1,77 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Archivo Semi-Expanded', sans-serif;
+    background: rgb(40,62,81);
+    background: linear-gradient(90deg, rgba(40,62,81,1) 0%, rgba(75,121,161,1) 100%);
+    color: #FFF;
 }
 
 table, td, th {
-    border:1px solid cornflowerblue;
-    vertical-align: center;
+    border: 1px solid cornflowerblue;
+    vertical-align: baseline;
+    border-collapse: collapse;
+}
+
+td {
+    width: 5%;
+    text-align: center;
+}
+
+th {
+    width: 5%;
+}
+
+.spanningColumn {
+    width: 25%;
+}
+
+#buttonsContainer {
+    width: 98%;
+    display: flex;
+    margin: 1%;
+    justify-content: space-evenly;
+}
+
+button {
+    padding: 3.5%;
+    font-size: 2.25rem;
+    width: 5rem;
+    border-radius: 100%;
+    box-shadow: 5px 5px 5px -5px #00000080;
+    border: none;
+}
+
+button:active {
+    box-shadow: 5px 5px 5px -3px #00000080;
+    transform: translateY(1px);
+}
+
+#score9 {
+    background-color: yellow;
+    color: black;
+}
+
+#score7 {
+    background-color: red;
+    color: white;
+}
+
+#score5 {
+    background-color: dodgerblue;
+    color: white;
+}
+
+#score3 {
+    background-color: black;
+    color: white;
+}
+
+#score1 {
+    background-color: white;
+    color: black;
+    border: 1px solid ghostwhite;
+}
+
+#scoreM {
+    background-color: grey;
+    color: white;
 }
