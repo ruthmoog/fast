@@ -2,7 +2,7 @@ import {calculateGoldCount, calculateHitsCount, calculateTotal, validScores} fro
 
 // note to ruth: https://vitest.dev/
 test("it knows the valid scores of imperial archery", () => {
-    expect(validScores).toEqual([1, 3, 5, 7, 9, "M"]);
+    expect(validScores).toEqual([9, 7, 5, 3, 1, "M"]);
 });
 
 test.each([

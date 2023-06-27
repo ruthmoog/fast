@@ -22,8 +22,8 @@ export default function Index() {
     <>
       <h1>Fast!</h1>
 
-      {validScores.map((e, index) => (
-        <ScoreButton key={index} setScores={setScores} value={e}/>
+      {validScores.map((score, index) => (
+        <ScoreButton key={index} setScores={setScores} value={score}/>
       ))}
 
       <ScoreSheet scores={scores}/>
