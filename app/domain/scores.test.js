@@ -6,6 +6,7 @@ test("it knows the valid scores of imperial archery", () => {
 });
 
 test.each([
+  [[], 0],
   [[1, 3, 5, 7, 9, "M"], 25],
   [[1, 3, 5, 7, 9, 1], 26],
   [[1, 3, 5, 7, 9, 3], 28],

@@ -5,7 +5,7 @@ export const scoresPerEnd = 6;
 export const endsPerRound = 2;
 
 export function calculateTotal(scores) {
-    return getHits(scores).reduce((totalScore, score) => totalScore + score)
+    return getHits(scores).reduce((totalScore, score) => totalScore + score, 0)
 
 }
 export function calculateHitsCount(scores) {
