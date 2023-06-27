@@ -1,4 +1,4 @@
-import { calculateTotal, validScores } from "./scores";
+import {calculateHitsCount, calculateTotal, validScores} from "./scores";
 
 // note to ruth: https://vitest.dev/
 test("it knows the valid scores of imperial archery", () => {
@@ -14,4 +14,16 @@ test.each([
   [[1, 3, 5, 7, 9, 9], 34]
 ])("it can calculate totals", (scores, expectedTotal) => {
   expect(calculateTotal(scores)).toEqual(expectedTotal);
+});
+
+test.each([
+  [[1, 3, 5, 7, 9, 7], 6],
+  [[1, 3, 5, 7, 9, "M"], 5],
+  [[1, 3, 5, 7, "M", "M"], 4],
+  [[1, 3, 5, "M", "M", "M"], 3],
+  [[1, 3, "M", "M", "M", "M"], 2],
+  [[1, "M", "M", "M", "M", "M"], 1],
+  [["M", "M", "M", "M", "M", "M"], 0]
+])("it can calculate hits", (scores, expectedHitCount) => {
+  expect(calculateHitsCount(scores)).toEqual(expectedHitCount);
 });
