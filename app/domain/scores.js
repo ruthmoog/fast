@@ -36,9 +36,6 @@ export function calculateRounds(scores) {
 
     // makeRounds is an array of "rounds" (which are just arrays)
     // therefore we need to return an array of objects instead
-
-    console.log(makeRounds);
-
     let rt = 0;
 
     return makeRounds.map((e) => {
