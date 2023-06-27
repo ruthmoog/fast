@@ -28,7 +28,6 @@ function useLocalStorage(key) {
     }, [key]);
 
     const setWithLocalStorage = (nextState) => {
-        console.log("hi there" ,nextState)
         localStorage.setItem(key, JSON.stringify(nextState))
         setState(nextState);
     };
@@ -54,10 +53,27 @@ export default function Index() {
             {/*<HitCounter scores={scores}/>*/}
             {/*<GoldCounter scores={scores}/>*/}
 
+            <ClearStorageButton setScores={setScores}/>
+
         </>
     );
 }
 
+function ClearStorageButton({setScores}) {
+    const [shouldClear, setShouldClear] = useState(false)
+
+    useEffect(() => {
+        if(shouldClear) {
+            setScores([])
+            setShouldClear(false)
+        }
+    }, [shouldClear])
+
+    return (
+        <button onClick={() => setShouldClear(true)}>⚠️ Clear stored data?</button>
+
+    )
+}
 
 function ScoreButton({setScores, value, currentScore}) {
     return (
@@ -73,9 +89,9 @@ function ScoreSheet({scores}) {
             <table>
                 <thead>
                 <tr>
-                    <th class="spanningColumn" colSpan={6}>🎯 scores</th>
+                    <th className="spanningColumn" colSpan={6}>🎯 scores</th>
                     <th>E/T</th>
-                    <th class="spanningColumn" colSpan={6}>🎯 scores</th>
+                    <th className="spanningColumn" colSpan={6}>🎯 scores</th>
                     <th>E/T</th>
                     <th>H</th>
                     <th>S</th>
