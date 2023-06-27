@@ -1,41 +1,24 @@
+const GOLD = 9;
 export const MISS = "M";
-export const validScores = [1, 3, 5, 7, 9, MISS];
+export const validScores = [1, 3, 5, 7, GOLD, MISS];
 export const scoresPerEnd = 6;
 export const endsPerRound = 2;
 
 export function calculateTotal(scores) {
     return getHits(scores).reduce((totalScore, score) => totalScore + score)
-}
 
+}
 export function calculateHitsCount(scores) {
     return getHits(scores).length
-}
 
+}
 export function calculateGoldCount(scores) {
     return scores.reduce((total, score) => {
-        if (score === 9) {
+        if (score === GOLD) {
             return total + 1;
         }
         return total;
     }, 0);
-}
-
-function getHits(scores) {
-    return scores.filter((score) => score !== MISS);
-}
-
-function calculateEnds(scores) {
-    return scores.reduce((resultArray, item, index) => {
-        const chunkIndex = Math.floor(index / scoresPerEnd);
-
-        if (!resultArray[chunkIndex]) {
-            resultArray[chunkIndex] = []; // start a new chunk
-        }
-
-        resultArray[chunkIndex].push(item);
-
-        return resultArray;
-    }, []);
 }
 
 export function calculateRounds(scores) {
@@ -72,4 +55,22 @@ export function calculateRounds(scores) {
 
         return {firstEnd: e[0] ?? [], secondEnd: e[1] ?? [], subTotals};
     });
+}
+
+function getHits(scores) {
+    return scores.filter((score) => score !== MISS);
+}
+
+function calculateEnds(scores) {
+    return scores.reduce((resultArray, item, index) => {
+        const chunkIndex = Math.floor(index / scoresPerEnd);
+
+        if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = []; // start a new chunk
+        }
+
+        resultArray[chunkIndex].push(item);
+
+        return resultArray;
+    }, []);
 }
